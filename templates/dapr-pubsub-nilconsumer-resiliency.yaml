@@ -1,0 +1,19 @@
+apiVersion: dapr.io/v1alpha1
+kind: Resiliency
+metadata:
+  name: kafka-nilrouter-inbound-resiliency
+spec:
+  policies:
+    retries:
+      pubsubRetry:
+        policy: {{ .Values.envValues.PUB_SUB_RETRY_POLICY }}
+        duration: {{ .Values.envValues.PUB_SUB_RETRY_DURATION }}
+        maxRetries: {{ .Values.envValues.PUB_SUB_MAX_RETRY | int }}
+    timeouts:
+      pubsubTimeout: {{ .Values.envValues.PUB_SUB_TIME_OUT | quote }}
+  targets:
+    components:
+      pubsub:
+        inbound:
+          retry: pubsubRetry
+          timeout: pubsubTimeout

@@ -1,0 +1,22 @@
+{{- if .Values.autoscaling.enabled -}}
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ include "nilrouter.fullname" . }}
+  labels:
+    deploymentName: {{ include "nilrouter.fullname" . }}
+spec:
+  minReplicaCount: {{ .Values.autoscaling.minReplicas }}
+  maxReplicaCount: {{ .Values.autoscaling.maxReplicas }}
+  pollingInterval: 1 #Optional. Default: 30 seconds
+  cooldownPeriod: 100 #Optional. Default: 30 seconds
+  scaleTargetRef:
+    name: {{ include "nilrouter.fullname" . }}
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: {{ .Values.envValues.KEDA_SERVER_ADDRESS }}
+        metricName: {{ .Values.envValues.KEDA_METRIC_NAME }}
+        threshold: '10'
+        query: sum(rate(http_server_requests_seconds_count{deployment="{{ include "nilrouter.fullname" . }}"}[5s]))
+{{- end }}

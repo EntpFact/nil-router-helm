@@ -1,0 +1,60 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: kafka-nilrouter-pubsub-component
+scopes:
+  - nilrouter
+spec:
+  type: pubsub.kafka
+  version: v1
+  metadata:
+    - name: brokers
+      value: {{ .Values.envValues.KAFKA_BROKER }}
+    - name: consumerGroup
+      value: {{ .Values.envValues.KAFKA_CONSUMER_GROUP }}
+    - name: clientID
+      value: {{ .Values.envValues.KAFKA_CLIENT_ID }}
+    - name: authType
+      value: {{ .Values.envValues.KAFKA_AUTH_TYPE }}   
+      #value: password
+    - name: maxMessageBytes
+      value: {{ .Values.envValues.KAFKA_MSG_BYTES }}
+    - name: consumeRetryEnabled
+      value: {{ .Values.envValues.KAFKA_CONSUMER_RETRY_ENABLED }}
+    - name: disableTls
+      #value: false
+      value: {{ .Values.envValues.KAFKA_DISABLE_TLS }}
+    - name: authRequired
+      #value: false
+      value: {{ .Values.envValues.KAFKA_AUTH_REQUIRED }}
+    - name: retryInterval
+      value: {{ .Values.envValues.KAFKA_RETRY_INTERVAL }}  # Retry interval reduced to 5 seconds
+    - name: maxRetryCount
+      value: {{ .Values.envValues.KAFKA_MAX_RETRY_COUNT | int }} # Only retry 3 times, then discard message
+    - name: rawPayload
+      value: "true"
+    #- name: saslMechanism
+      #value: SHA-512  
+    #- name: saslUsername
+      #secretKeyRef:
+        #key: saslUsername
+        #name: confluent-cloud-secret
+    #- name: saslPassword
+      #secretKeyRef:
+        #key: saslPassword
+        #name: confluent-cloud-secret
+    #- name: caCert
+      #secretKeyRef:
+        #key: caCert
+        #name: confluent-cloud-secret
+    #- name: sasl
+      #secretKeyRef:
+        #key: sasl
+        #name: confluent-cloud-secret
+    #- name: tls
+      #secretKeyRef:
+        #key: tls
+        #name: confluent-cloud-secret
+
+
+        
