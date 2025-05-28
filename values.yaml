@@ -133,13 +133,15 @@ envValues:
   ROUTING_CHANNEL2: "camt59"
   ROUTING_CHANNEL3: "camt_52_54"
   ROUTING_CHANNEL4: "camt_52_54"
-  ROUTING_CHANNEL5: "channelA"
+  ROUTING_CHANNEL5: "admi004"
+  ROUTING_CHANNEL6: "pacs002"
   MAPPING_PACS008: "//*[local-name()=\"CdtTrfTxInf\"]"
   MAPPING_CAMT59: "//*[local-name()=\"OrgnlNtfctnRef\"]"
   FCTOPIC: "FCTOPIC"
   EPHTOPIC: "EPHTOPIC"
   SFMSTOPIC: "SFMSTOPIC"
-
+  MSGTOPIC: "MSGEVENTTRACKERTOPIC"
+  CUG_FLAG : 'false'
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
