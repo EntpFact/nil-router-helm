@@ -138,7 +138,7 @@ envValues:
   ROUTING_CHANNEL7: "pacs004"
   MAPPING_PACS008: "//*[local-name()=\"CdtTrfTxInf\"]"
   MAPPING_CAMT59: "//*[local-name()=\"OrgnlNtfctnRef\"]"
-  MAPPING_PACS004: "//*[local-name()=\"TxDtls\"]"
+  MAPPING_PACS004: "//*[local-name()=\"TxInf\"]"
   FCTOPIC: "FCTOPIC"
   EPHTOPIC: "EPHTOPIC"
   SFMSTOPIC: "SFMSTOPIC"
