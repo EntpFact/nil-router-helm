@@ -40,7 +40,7 @@ serviceAccount:
 podAnnotations: {
   dapr.io/enabled: 'true',
   dapr.io/app-id: 'nilrouter',
-  dapr.io/app-port: '1035',
+  dapr.io/app-port: '1067',
   dapr.io/log-level: 'debug',
   dapr.io/sidecar-image: 'us-central1-docker.pkg.dev/hbl-poc-enterprisefac-pm-prj/data-ingestion-repo/daprd:1.14.4',
   dapr.io/enable-app-health-check: "true",
@@ -87,7 +87,7 @@ service:
   # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
-  port: 1035
+  port: 1067
 
 # Please provide the below enabled value as true or false for respective cloud
 cloud:
@@ -101,7 +101,7 @@ envFrom:
   configMapName: nil-router-configmap
 
 envValues:
-  port: "1035"
+  port: "1067"
   #Please provide STORAGE_ENABLED as true or false for respective cloud
   MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "*"
   MANAGEMENT_METRICS_PROMETHEUS_ENABLED: 'true'
@@ -135,8 +135,10 @@ envValues:
   ROUTING_CHANNEL4: "camt_52_54"
   ROUTING_CHANNEL5: "admi004"
   ROUTING_CHANNEL6: "pacs002"
+  ROUTING_CHANNEL7 : "pacs004"
   MAPPING_PACS008: "//*[local-name()=\"CdtTrfTxInf\"]"
   MAPPING_CAMT59: "//*[local-name()=\"OrgnlNtfctnRef\"]"
+  MAPPING_PACS004 : "//*[local-name()=\"TxInf\"]"
   FCTOPIC: "FCTOPIC"
   EPHTOPIC: "EPHTOPIC"
   SFMSTOPIC: "SFMSTOPIC"
@@ -176,7 +178,7 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /healthz
-    port: 1035
+    port: 1067
   initialDelaySeconds: 180  # Wait 3 minutes before checking
   periodSeconds: 10         # Check every 10 seconds
   failureThreshold: 5       # Fail only after 5 failed checks
@@ -185,7 +187,7 @@ livenessProbe:
 readinessProbe:
   httpGet:
     path: /ready
-    port: 1035
+    port: 1067
   initialDelaySeconds: 180  # Wait 3 minutes before checking
   periodSeconds: 10         # Check every 10 seconds
   failureThreshold: 5       # Fail only after 5 failed checks
