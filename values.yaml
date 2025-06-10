@@ -116,7 +116,7 @@ envValues:
   KAFKA_AUTH_REQUIRED: 'false'
   KAFKA_RETRY_INTERVAL: "5s"
   KAFKA_MAX_RETRY_COUNT: "3"
-  KAFKA_TOPIC_NAME: "SFMSTOPIC2"
+  KAFKA_TOPIC_NAME: "NILTOPIC"
   KAFAKA_ROUTE: "/process"
   KAFAKA_PUB_SUB_NAME: "kafka-nilrouter-pubsub-component"
   PUB_SUB_RETRY_POLICY: "constant"
